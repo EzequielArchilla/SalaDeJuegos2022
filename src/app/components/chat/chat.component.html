@@ -1,0 +1,42 @@
+
+
+<button class="button_home" (click)="navigateHome()">X</button>
+
+<body class="bg-funky">
+    <div class="container">
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="mesgs">
+                    <div class="msg_history">
+                        <div *ngFor="let mensaje of messages">
+                            <div *ngIf="(mensaje.uid == this.uid)">
+                                <div class="outgoing_msg">
+                                    <div class="sent_msg">
+                                        <span class="owner_msg">{{mensaje.owner}}</span>
+                                        <p>{{mensaje.message}}</p>
+                                        <span class="time_date">{{mensaje.date}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="(mensaje.uid != this.uid)">
+                                <div class="incoming_msg_img"> <img
+                                        src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <span class="owner_msg">{{mensaje.owner}}</span>
+                                        <p>{{mensaje.message}}</p>
+                                        <span class="time_date">{{mensaje.date}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="msg-container">
+            <input [disabled]="!this.uid" class="msg" type="text" [(ngModel)]="message">
+            <button [disabled]="!this.uid" class="button-send" (click)="writeMessage()">SEND</button>
+        </div>
+    </div>
+</body>

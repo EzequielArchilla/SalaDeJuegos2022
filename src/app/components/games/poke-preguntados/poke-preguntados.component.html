@@ -1,0 +1,35 @@
+<body>
+    <div *ngIf="!derrota; else derrotaTemplate" class="container">
+        <h2 class="col text-center title">Adivina el nombre del Pokemon</h2>
+            <div class="col text-center top">
+                <img *ngIf="this.pokemonImagen != ''" [src]="this.pokemonImagen" height="300" width="300" >
+            </div>
+            <div class="col text-center">
+                <strong>Puntaje: <mark>{{ puntaje }}</mark></strong>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col text-center">
+                    <button *ngFor="let nombre of nombresPokemonFalsos" class="btn btn-success mg" (click)="check(nombre)" value="nombre">{{nombre}}</button>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="!jugando" class="col text-center">
+                    <button (click)="nuevoPokemon()" class="btn btn-primary">Iniciar</button>
+                </div>
+            </div>
+    </div>  
+    <ng-template #derrotaTemplate>
+        <div class="container">
+            <h2 class="col text-center title">Adivina el nombre del Pokemon</h2>
+         <div class="col text-center top">
+                <strong>Puntaje final: <mark>{{ puntajeFinal }}</mark></strong>
+          </div>
+          <div class="row">
+            <div *ngIf="!jugando" class="col text-center  mg-top">
+                <button (click)="nuevoPokemon()" class="btn btn-primary">Iniciar</button>
+            </div>
+        </div>
+     </div>
+</ng-template>
+</body>

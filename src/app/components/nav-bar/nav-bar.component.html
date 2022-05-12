@@ -1,0 +1,21 @@
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a routerLink="home" class="navbar-brand d-flex align-items-center">
+        <img src="../../../favicon.ico" alt="navIcon" height="50px">
+        <strong>Sala de Juegos UTN</strong>
+      </a>
+      <button
+        *ngIf="!this.logged"
+        class="button-nav-green"
+        (click)="navigateToLogin()"
+      >
+        Ingresar
+      </button>
+      <div class="d-flex flex-row align-items-center" *ngIf="this.logged">
+        <span class="text-white">{{ this.email }} </span>
+        <button class="button-nav-red" (click)="signOut()">Salir</button>
+      </div>
+    </div>
+  </div>
+</header>

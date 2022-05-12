@@ -1,0 +1,22 @@
+<body class="text-center">
+    <main class="form-signin">
+        <img class="mb-4" src="../../../favicon.ico" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal">Sala de Juegos</h1>
+    
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="this.user.email"> 
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="this.password">
+          <label for="floatingPassword">Contraseña</label>
+        </div>
+
+        <button class="w-100 mb-2 btn btn-lg btn-primary" (click)="logIn()">Ingreso</button>
+        <button class="w-100 mb-4 btn btn-lg btn-primary" (click)="fastLogIn()">Ingreso Rapido</button>
+        <a routerLink="/register">Registrarse</a>
+        
+        <p class="mt-5 mb-3 text-muted">&copy; Ezequiel Archilla 2022</p>
+
+    </main>        
+</body>

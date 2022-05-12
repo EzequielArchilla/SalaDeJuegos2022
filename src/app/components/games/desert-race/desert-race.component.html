@@ -1,0 +1,21 @@
+<body>
+    <button class="button_home" (click)="navigateHome()">X</button>
+
+    <div class="container">
+        <canvas id="canvas" width=220 height=600></canvas>
+
+        <div class="lateral-menu">
+            <span>Puntaje {{puntaje}}</span>
+            <button (click)="start()">INICIAR</button>
+
+            <div class="keys">
+                <div (click)="this.direccion = 'left'" class="left arr fa fa-arrow-left"></div>
+                <div (click)="this.direccion = 'center'" class="up arr fa fa-arrow-up"></div>
+                <div (click)="this.direccion = 'right'" class="right arr fa fa-arrow-right"></div>
+            </div>
+        </div>
+    </div>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</body>

@@ -1,0 +1,36 @@
+<body>
+<div class="container">
+    <form>
+        <div class="tp-header-image"></div>
+        <div class="col text-center top">
+            <strong>Intentos &nbsp;<mark>{{ tries }} / 5</mark></strong>
+            <h1><mark>{{hiddenWord}}</mark></h1>
+        </div>
+        <hr>
+        <div class="row" *ngIf="win">
+            <div class="col text-center">
+                <h3 class="win">Ganaste!</h3>
+                <br>
+                <button class="btn btn-primary" (click)="reloadGame()">Juegar de nuevo</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="lost">
+            <div class="col text-center">
+                <h3 class="lost">Perdiste!</h3>
+                <h3 class="lost">La palabra era: <mark>{{word}}</mark></h3>
+                <button class="btn btn-primary" (click)="reloadGame()">Juegar de nuevo</button>
+            </div>
+        </div>
+        <div class="button-container" *ngIf="!win && !lost">
+            <div class="col text-center top">
+                <button class="btn btn-primary customKeys" id="btn-{{letter}}" (click)="check(letter)" *ngFor="let letter of letters">
+          {{letter}}
+        </button>
+                <hr>
+            </div>
+        </div>
+    </form>
+</div>
+
+    
+</body>

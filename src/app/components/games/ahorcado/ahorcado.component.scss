@@ -1,0 +1,35 @@
+strong {
+    font-weight: bolder !important;
+    position: relative !important;
+    bottom: 25px !important;
+    font-size: 18px !important;
+    color: #6c757d;
+  }
+ 
+  ::placeholder {
+    color: #cbcbcb;
+    opacity: 4.5;
+    font-size: 8px
+  }
+ .example-form {
+   width: 300px;
+ }
+ 
+ input[type="search"]::-webkit-search-cancel-button {
+   -webkit-appearance: searchfield-cancel-button;
+ }
+
+ body{
+     position: relative;
+     height: 100vh;
+     background-color: rgb(136, 171, 83);
+ }
+
+ .top{
+    padding-top:20%;
+ }
+ 
+ .customKeys{
+     margin-left: 2px;
+     margin-right: 2px;
+ }
