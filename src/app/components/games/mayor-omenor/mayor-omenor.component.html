@@ -1,23 +1,25 @@
 <body>
-    
-<button (click)="iniciarMazo()">CARGAR MAZO</button>
-<button class="button_home" (click)="navigateHome()">X</button>
-
-<div class="container">
-    <img id="imagenes_mazo" src="../../../../assets/baraja/0.png" />
-
-    <div class="scoreBoard">
-        <h4>Puntos {{puntaje}}</h4>
+    <div class="container">
+            <div class="tp-header-image"></div>
+            <div class="col text-center top">
+                <button class="button-inicio" (click)="iniciarMazo()">Iniciar</button>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col text-center">
+                    <img id="imagenes_mazo" src="../../../../assets/baraja/0.png" />
+                </div>
+            </div>
+            <div class="row" *ngIf="jugando">
+                <div class="col text-center mg-top">
+                <input type="button" class="btn btn-success mg-10" value="Mayor" (click)="mayor()">
+                <input type="button" class="btn btn-danger mg-10" value="Menor" (click)="menor()">
+            </div>
+            </div>
+            <div class="row col text-center mg-top">
+                <h2 id="score" class="hidden">PUNTAJE MAXIMO {{puntajeMaximo}}</h2>
+            </div>
     </div>
-</div>
-
-<input type="button" value="Mayor" (click)="mayor()">
-<input type="button" value="Menor" (click)="menor()">
-
-<h2 id="score" class="hidden">PUNTAJE MAXIMO {{puntajeMaximo}}</h2>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   
-</body>
+    
+        
+    </body>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-mayor-omenor',
   templateUrl: './mayor-omenor.component.html',
-  styleUrls: ['./mayor-omenor.component.css']
+  styleUrls: ['./mayor-omenor.component.css'],
 })
 export class MayorOMenorComponent implements OnInit {
   mazo!: string[];
@@ -15,14 +15,14 @@ export class MayorOMenorComponent implements OnInit {
   palos = ['e', 'b', 'c', 'o'];
   puntaje!: number;
   puntajeMaximo!: number;
+  jugando: boolean = false;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   iniciarMazo() {
+    this.jugando = true;
     this.mazo = [];
     this.cartaActual = 0;
     this.cartaProxima = 0;
@@ -36,8 +36,8 @@ export class MayorOMenorComponent implements OnInit {
     });
     this.mezclarMazo();
     this.cambiarImagen();
-    const h2 = document.getElementById("score");
-    h2?.classList.add("hidden");
+    const h2 = document.getElementById('score');
+    h2?.classList.add('hidden');
   }
 
   mezclarMazo() {
@@ -55,12 +55,12 @@ export class MayorOMenorComponent implements OnInit {
   }
 
   mayor() {
-    this.mayorOMenor = "mayor";
+    this.mayorOMenor = 'mayor';
     this.sacarCarta();
   }
 
   menor() {
-    this.mayorOMenor = "menor";
+    this.mayorOMenor = 'menor';
     this.sacarCarta();
   }
 
@@ -71,18 +71,16 @@ export class MayorOMenorComponent implements OnInit {
       this.cartaProxima = parseInt(this.mazo[0].substr(1, 2));
       this.cambiarImagen();
 
-      if (this.mayorOMenor == "mayor") {
+      if (this.mayorOMenor == 'mayor') {
         if (this.cartaProxima >= this.cartaActual) {
           this.puntaje++;
-        }
-        else {
+        } else {
           this.gameOver();
         }
-      } else if (this.mayorOMenor == "menor") {
+      } else if (this.mayorOMenor == 'menor') {
         if (this.cartaProxima <= this.cartaActual) {
           this.puntaje++;
-        }
-        else {
+        } else {
           this.gameOver();
         }
       }
@@ -91,22 +89,24 @@ export class MayorOMenorComponent implements OnInit {
 
   gameOver() {
     this.puntajeMaximo = this.puntaje;
-    const h2 = document.getElementById("score");
-    h2?.classList.remove("hidden");
+    this.jugando = false;
+    const h2 = document.getElementById('score');
+    h2?.classList.remove('hidden');
   }
 
   cambiarImagen() {
-    const imagen = document.getElementById("imagenes_mazo") as HTMLImageElement;
-    imagen.src = "../../../../assets/baraja/" + this.mazo[0] + ".png"
+    const imagen = document.getElementById('imagenes_mazo') as HTMLImageElement;
+    imagen.src = '../../../../assets/baraja/' + this.mazo[0] + '.png';
   }
 
-  randomIntFromInterval(min: number, max: number) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+  randomIntFromInterval(min: number, max: number) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   navigateHome() {
     setTimeout(() => {
-      this.router.navigateByUrl("Home")
-    }, 1000)
+      this.router.navigateByUrl('Home');
+    }, 1000);
   }
 }
