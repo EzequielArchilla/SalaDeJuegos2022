@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiPokemonService } from 'src/app/services/apiPokemon/api-pokemon.service';
+import { UserFirestoreService } from 'src/app/services/user-firestore/user-firestore.service';
+import { UserAuthService } from 'src/app/services/userAuth/user-auth.service';
 
 @Component({
   selector: 'app-poke-preguntados',
@@ -19,7 +21,9 @@ export class PokePreguntadosComponent implements OnInit {
 
   constructor(
     private pokeApi: ApiPokemonService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userFirestore: UserFirestoreService,
+    private auth: UserAuthService
   ) {}
 
   ngOnInit(): void {
@@ -65,10 +69,10 @@ export class PokePreguntadosComponent implements OnInit {
     this.jugando = false;
     this.puntajeFinal = this.puntaje;
     this.puntaje = 0;
+    this.generarPuntaje();
   }
 
   rondaGanada() {
-    this.showSuccess();
     this.puntaje++;
     this.nuevoPokemon();
   }
@@ -79,5 +83,20 @@ export class PokePreguntadosComponent implements OnInit {
 
   showError() {
     this.toastr.error('Incorrecto');
+  }
+
+  generarPuntaje() {
+    console.log(this.auth.userLogged);
+    if (this.puntajeFinal > 0) {
+      this.userFirestore
+        .crearPuntaje(
+          this.auth.userLogged,
+          this.puntajeFinal,
+          'poke-preguntados'
+        )
+        .then((ok) => {
+          this.toastr.success('Puntaje cargado');
+        });
+    }
   }
 }

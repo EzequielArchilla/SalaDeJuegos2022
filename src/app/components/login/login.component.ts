@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs';
 import { User } from 'src/app/class/user';
 import { LocalStorageService } from 'src/app/services/localStorage/local-storage.service';
 import { UserFirestoreService } from 'src/app/services/user-firestore/user-firestore.service';
@@ -23,14 +24,19 @@ export class LoginComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {
     this.user = new User();
-    this.password = "";
+    this.password = '';
   }
 
   ngOnInit(): void {}
 
-  fastLogIn() {
-    this.user.email = 'ingresorapido@test.com';
-    this.password = '123456';
+  fastLogIn(tipo: string) {
+    if (tipo === 'administrador') {
+      this.user.email = 'admin@admin.com';
+      this.password = '123456';
+    } else {
+      this.user.email = 'ingresorapido@test.com';
+      this.password = '123456';
+    }
   }
 
   showSuccess() {
@@ -46,13 +52,20 @@ export class LoginComponent implements OnInit {
       .signIn(this.user.email, this.password)
       .then((userCredential) => {
         this.userFire.crearIngreso(this.user).then((result) => {
-          this.userAuthService.userLogged = this.user;
-          this.userAuthService.setLogged(true);
-          this.localStorageService.setData("userEmail",this.user.email);
-          this.showSuccess();
-          setTimeout(() => {
-            this.router.navigateByUrl('home');
-          }, 1000);
+          this.userFire
+            .obtenerUsuario()
+            .pipe(take(1))
+            .subscribe((data) => {
+              this.userAuthService.userLogged = data.filter(
+                (item) => item.email == this.user.email
+              )[0];
+              this.userAuthService.setLogged(true);
+              this.localStorageService.setData('userEmail', this.user.email);
+              this.showSuccess();
+              setTimeout(() => {
+                this.router.navigateByUrl('home');
+              }, 500);
+            });
         });
       })
       .catch((error) => {

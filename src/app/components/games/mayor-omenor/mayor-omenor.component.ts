@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserFirestoreService } from 'src/app/services/user-firestore/user-firestore.service';
+import { UserAuthService } from 'src/app/services/userAuth/user-auth.service';
 
 @Component({
   selector: 'app-mayor-omenor',
@@ -17,7 +20,12 @@ export class MayorOMenorComponent implements OnInit {
   puntajeMaximo!: number;
   jugando: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private userFirestore: UserFirestoreService,
+    private auth: UserAuthService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -92,6 +100,17 @@ export class MayorOMenorComponent implements OnInit {
     this.jugando = false;
     const h2 = document.getElementById('score');
     h2?.classList.remove('hidden');
+    this.generarPuntaje();
+  }
+
+  generarPuntaje() {
+    if (this.puntajeMaximo > 0) {
+      this.userFirestore
+        .crearPuntaje(this.auth.userLogged, this.puntajeMaximo, 'mayor-menor')
+        .then((ok) => {
+          this.toastr.success('Puntaje cargado');
+        });
+    }
   }
 
   cambiarImagen() {

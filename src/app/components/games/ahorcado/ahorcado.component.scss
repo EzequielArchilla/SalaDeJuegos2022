@@ -6,6 +6,11 @@ strong {
     color: #6c757d;
   }
  
+  p{
+    font-size: 18px !important;
+    color: #6c757d;
+    font-weight: bolder !important;
+  }
   ::placeholder {
     color: #cbcbcb;
     opacity: 4.5;
@@ -21,7 +26,7 @@ strong {
 
  body{
      position: relative;
-     height: 100vh;
+     height: 92vh;
      background-color: rgb(136, 171, 83);
  }
 

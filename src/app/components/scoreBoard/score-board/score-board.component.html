@@ -1,0 +1,11 @@
+<div class="container bg-green pd-3" *ngIf="listaPuntajes.length > 0">
+    <h5>Puntajes</h5>
+    <ul class="list-group mb-3">
+        <li *ngFor="let puntaje of listaPuntajes" class="list-group-item justify-content-between lh-sm">
+            <div >
+                <h6 class="my-0" style="text-align: center;">{{puntaje.puntaje}}</h6>
+                <small class="text-muted" style="text-align: center;">{{puntaje.email}}</small>
+            </div>
+        </li>
+    </ul>
+</div>

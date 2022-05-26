@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { UserFirestoreService } from 'src/app/services/user-firestore/user-firestore.service';
+import { UserAuthService } from 'src/app/services/userAuth/user-auth.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -39,6 +42,7 @@ export class AhorcadoComponent implements OnInit {
   tries = 0;
   win = false;
   lost = false;
+  puntaje = 0;
   letters = [
     'A',
     'B',
@@ -68,7 +72,11 @@ export class AhorcadoComponent implements OnInit {
     'Z',
   ];
 
-  constructor() {}
+  constructor(
+    private userFirestore: UserFirestoreService,
+    private auth: UserAuthService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     // tslint:disable-next-line:prefer-const
@@ -110,10 +118,21 @@ export class AhorcadoComponent implements OnInit {
     const wordCheck = wordArray.join('');
     if (wordCheck === this.word) {
       this.win = true;
-      this.sendScore();
+      this.puntaje++;
     }
-    if (this.tries == 5) {
+    if (this.tries == 10) {
       this.lost = true;
+      this.generarPuntaje();
+    }
+  }
+
+  generarPuntaje() {
+    if (this.puntaje > 0) {
+      this.userFirestore
+        .crearPuntaje(this.auth.userLogged, this.puntaje, 'ahorcado')
+        .then((ok) => {
+          this.toastr.success('Puntaje cargado');
+        });
     }
   }
 
@@ -122,6 +141,7 @@ export class AhorcadoComponent implements OnInit {
     this.word = this.words[randomNumber];
     this.hiddenWord = '_ '.repeat(this.word.length);
     this.tries = 0;
+    this.puntaje = 0;
     this.win = false;
     this.lost = false;
   }

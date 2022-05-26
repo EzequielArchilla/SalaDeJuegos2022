@@ -7,6 +7,7 @@ import { DesertRaceComponent } from 'src/app/components/games/desert-race/desert
 import { PokePreguntadosComponent } from 'src/app/components/games/poke-preguntados/poke-preguntados.component';
 import { MayorOMenorComponent } from 'src/app/components/games/mayor-omenor/mayor-omenor.component';
 import { AhorcadoComponent } from 'src/app/components/games/ahorcado/ahorcado.component';
+import { ScoreBoardComponent } from 'src/app/components/scoreBoard/score-board/score-board.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AhorcadoComponent } from 'src/app/components/games/ahorcado/ahorcado.co
     MayorOMenorComponent,
     DesertRaceComponent,
     PokePreguntadosComponent,
+    ScoreBoardComponent,
   ],
   imports: [CommonModule, GamesRoutingModule],
 })

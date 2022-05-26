@@ -1,0 +1,124 @@
+
+  <body class="bg-light">
+    
+    <div class="container">
+      <div class="py-5 mb-4 text-center bg-lightBlue">
+        <h2>Encuesta</h2>
+    </div>
+    
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3 text-primary">Informacion basica</h4>
+          <form [formGroup]="encuestaForm" (ngSubmit)="crearEncuesta()" class="needs-validation">
+            <div class="row">   
+                <div style="display:flex; justify-content: space-around;">    
+              <div class="mb-3 w-100">
+                <label for="firstName">Nombre</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" [value]="this.nombre" [attr.disabled]="true">
+              </div>
+              <div class="mb-3 w-100">
+                <label for="firstName">Apellido</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" [value]="this.apellido" [attr.disabled]="true">
+              </div>
+            </div>
+
+              <div class="mb-3">
+                <label for="edad">Edad</label>
+                <input type="number" class="form-control" id="edad" placeholder="" value=""  formControlName="edad" >
+                <div class="invalid-feedback d-block" *ngIf="this.encuestaForm.controls['edad'].errors?.['required'] &&
+                this.encuestaForm.controls['edad'].touched">
+                Debe ingresar su edad
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="this.encuestaForm.controls['edad'].errors?.['min'] || this.encuestaForm.controls['edad'].errors?.['max'] &&
+                this.encuestaForm.controls['edad'].touched">
+                Rango permitido 10 - 99
+                </div>
+              </div>
+            </div>
+    
+            <div class="mb-3">
+              <label for="telefono">Telefono</label>
+              <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+              <div class="invalid-feedback d-block" *ngIf="this.encuestaForm.controls['telefono'].errors?.['required'] &&
+                this.encuestaForm.controls['telefono'].touched">
+                Debe ingresar un telefono
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="this.encuestaForm.controls['telefono'].errors?.['pattern'] &&
+                this.encuestaForm.controls['telefono'].touched">
+                Debe ingresar un telefono de 10 numeros
+                </div>
+            </div>
+
+            <h4 class="mb-3 text-primary">Preguntas</h4>
+            <br>
+<hr>
+            <h6 class="mb-3 text-secondary">Puntaje</h6>
+<fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" formControlName="rating"/><label class = "full" for="star5" title="5 puntos"></label>
+    <input type="radio" id="star4half" name="rating" value="4.5" formControlName="rating"/><label class="half" for="star4half" title="4.5 puntos"></label>
+    <input type="radio" id="star4" name="rating" value="4" formControlName="rating"/><label class = "full" for="star4" title="4 puntos"></label>
+    <input type="radio" id="star3half" name="rating" value="3.5" formControlName="rating"/><label class="half" for="star3half" title="3.5 puntos"></label>
+    <input type="radio" id="star3" name="rating" value="3" formControlName="rating"/><label class = "full" for="star3" title="3 puntos"></label>
+    <input type="radio" id="star2half" name="rating" value="2.5" formControlName="rating"/><label class="half" for="star2half" title="2.5 puntos"></label>
+    <input type="radio" id="star2" name="rating" value="2" formControlName="rating"/><label class = "full" for="star2" title="2 puntos"></label>
+    <input type="radio" id="star1half" name="rating" value="1.5" formControlName="rating"/><label class="half" for="star1half" title="1.5 puntos"></label>
+    <input type="radio" id="star1" name="rating" value="1" formControlName="rating"/><label class = "full" for="star1" title="1 punto"></label>
+    <input type="radio" id="starhalf" name="rating" value="0.5" formControlName="rating"/><label class="half" for="starhalf" title="0.5 puntos"></label>
+</fieldset>
+<br>
+<hr>
+
+<h6 class="mb-3 text-secondary">Selecciona tus juegos favoritos</h6>
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="Desert Race" (change)="juegosFavoritos('Desert Race')" formControlName="juegosFav">
+    <label class="form-check-label" for="flexCheckDefault">
+      Desert Race
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="Ahorcado" (change)="juegosFavoritos('Ahorcado')" formControlName="juegosFav">
+    <label class="form-check-label" for="flexCheckChecked">
+      Ahorcado
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="Mayor-o-Menor" (change)="juegosFavoritos('Mayor-o-Menor')" formControlName="juegosFav">
+    <label class="form-check-label" for="flexCheckChecked">
+      Mayor o Menor
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="Poke-preguntados" (change)="juegosFavoritos('Poke-preguntados')" formControlName="juegosFav">
+    <label class="form-check-label" for="flexCheckChecked">
+      Poke-preguntados
+    </label>
+  </div>
+  <hr>
+
+              <div class="mb-3">
+                <h6 class="mb-3 text-secondary">Mejoras</h6>
+                <textarea name="Text1" cols="40" rows="5" formControlName="mejoras"></textarea>
+                <div class="invalid-feedback d-block" *ngIf="this.encuestaForm.controls['mejoras'].errors?.['required'] &&
+                this.encuestaForm.controls['mejoras'].touched">
+                Ingrese su feedback
+                </div>
+              </div>
+              <hr>
+              <br>
+            <button type="submit" 
+            class="btn btn-primary btn-block" 
+            [disabled]="encuestaForm.invalid">
+            Aceptar
+          </button>
+          </form>
+        </div>
+      </div>
+    
+      
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; Ezequiel Archilla 2022</p>
+      </footer>
+    </div>
+    

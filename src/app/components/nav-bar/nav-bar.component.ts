@@ -7,19 +7,19 @@ import { HomeComponent } from '../home/home.component';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
+  logged: boolean;
+  email: string;
 
-  logged:boolean;
-  email:string;
-
-  constructor(private localStorageService:LocalStorageService,
-    private router:Router,
-    private userAuthService:UserAuthService) {
-
-      this.logged = false;
-      this.email = "";
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private userAuthService: UserAuthService
+  ) {
+    this.logged = false;
+    this.email = '';
   }
 
   ngOnInit(): void {
@@ -29,23 +29,20 @@ export class NavBarComponent implements OnInit {
     //   console.log("ENTER");
     //   console.log(result);
     // })
-    this.userAuthService.loggedChange.subscribe(value => {
+    this.userAuthService.loggedChange.subscribe((value) => {
       this.logged = value;
       this.email = this.userAuthService.userLogged.email;
-      console.log(this.email);
-      console.log(this.userAuthService.userLogged.email);
     });
   }
 
-  navigateToLogin()
-  {
+  navigateToLogin() {
     this.router.navigateByUrl('login');
   }
 
-  signOut()
-  {
+  signOut() {
     this.userAuthService.signOut();
     this.userAuthService.setLogged(false);
-    this.localStorageService.removeData("userEmail");
+    this.localStorageService.removeData('userEmail');
+    this.router.navigate(['home']);
   }
 }

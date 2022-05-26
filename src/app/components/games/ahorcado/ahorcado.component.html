@@ -1,9 +1,10 @@
 <body>
 <div class="container">
+    <app-score-board juegoSeleccionado="ahorcado"></app-score-board>
     <form>
         <div class="tp-header-image"></div>
         <div class="col text-center top">
-            <strong>Intentos &nbsp;<mark>{{ tries }} / 5</mark></strong>
+            <strong>Intentos &nbsp;<mark>{{ tries }} / 10</mark></strong>
             <h1><mark>{{hiddenWord}}</mark></h1>
         </div>
         <hr>
@@ -27,6 +28,7 @@
           {{letter}}
         </button>
                 <hr>
+                <p>Puntaje &nbsp;<mark>{{ this.puntaje }}</mark></p>
             </div>
         </div>
     </form>

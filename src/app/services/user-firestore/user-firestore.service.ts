@@ -4,6 +4,7 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { Survey } from 'src/app/class/survey/survey';
 import { User } from 'src/app/class/user';
 
 @Injectable({
@@ -13,11 +14,13 @@ export class UserFirestoreService {
   private ingresosRef: AngularFirestoreCollection;
   private usuariosRef: AngularFirestoreCollection;
   private puntajesRef: AngularFirestoreCollection;
+  private encuestasRef: AngularFirestoreCollection;
 
   constructor(private db: AngularFirestore) {
     this.ingresosRef = this.db.collection('ingresos');
     this.usuariosRef = this.db.collection('usuarios');
     this.puntajesRef = this.db.collection('puntajes');
+    this.encuestasRef = this.db.collection('encuestas');
   }
 
   public crearIngreso(user: User) {
@@ -25,12 +28,13 @@ export class UserFirestoreService {
     return this.ingresosRef.add({ email: user.email, fecha: today });
   }
 
-  public crearPuntaje(user: User, puntaje: number) {
+  public crearPuntaje(user: User, puntaje: number, juego: string) {
     var today = new Date();
     return this.puntajesRef.add({
       email: user.email,
       fecha: today,
       puntaje: puntaje,
+      juego: juego,
     });
   }
 
@@ -38,8 +42,24 @@ export class UserFirestoreService {
     return this.usuariosRef.add({ ...user });
   }
 
+  public crearEncuesta(usuario: User, encuesta: Survey) {
+    return this.encuestasRef.add({ usuario: usuario, ...encuesta });
+  }
+
+  public obtenerUsuario() {
+    return this.usuariosRef.valueChanges() as Observable<User[]>;
+  }
+
   public obtenerIngreso() {
-    return this.ingresosRef.valueChanges() as Observable<User[]>;
+    return this.ingresosRef.valueChanges() as Observable<any[]>;
+  }
+
+  public obtenerEncuesta() {
+    return this.encuestasRef.valueChanges() as Observable<Survey[]>;
+  }
+
+  public obtenerPuntajes() {
+    return this.puntajesRef.valueChanges() as Observable<any[]>;
   }
 
   public update(id: string, data: any) {

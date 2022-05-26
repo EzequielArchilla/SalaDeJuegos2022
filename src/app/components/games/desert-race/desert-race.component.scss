@@ -12,6 +12,7 @@ html {
 
 body {
     background-image: url('../../../../assets/desert.jpg');
+    height: 92vh;
 }
 
 .lateral-menu{
@@ -88,4 +89,13 @@ body {
   text-shadow: 0 0 10px yellow, 0 0 10px yellow, 0 0 10px yellow, 0 0 10px yellow;
   font-size: 100px;
   font-family: serif;
+}
+
+.text-highlight{
+  font-size: larger;
+  color: white;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: cadetblue;
+  text-align: center;
 }

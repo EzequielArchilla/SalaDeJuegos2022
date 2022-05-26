@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
@@ -23,6 +23,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { ChatComponent } from './components/chat/chat.component';
+import { ScoreBoardComponent } from './components/scoreBoard/score-board/score-board.component';
+import { SurveyComponent } from './components/survey/survey/survey.component';
+import { SurveyListComponent } from './components/surveyList/survey-list/survey-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { ChatComponent } from './components/chat/chat.component';
     FooterComponent,
     NavBarComponent,
     ChatComponent,
+    SurveyComponent,
+    SurveyListComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +56,7 @@ import { ChatComponent } from './components/chat/chat.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

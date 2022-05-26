@@ -12,8 +12,9 @@
           <label for="floatingPassword">Contraseña</label>
         </div>
 
-        <button class="w-100 mb-2 btn btn-lg btn-primary" (click)="logIn()">Ingreso</button>
-        <button class="w-100 mb-4 btn btn-lg btn-primary" (click)="fastLogIn()">Ingreso Rapido</button>
+        <button class="w-100 mb-4 btn btn-lg btn-primary" (click)="logIn()">Ingreso</button>
+        <button class="w-100 mb-2 btn btn-lg btn-primary" (click)="fastLogIn('usuario')">Ingreso Rapido (usuario)</button>
+        <button class="w-100 mb-4 btn btn-lg btn-primary" (click)="fastLogIn('administrador')">Ingreso Rapido (admin)</button>
         <a routerLink="/register">Registrarse</a>
         
         <p class="mt-5 mb-3 text-muted">&copy; Ezequiel Archilla 2022</p>

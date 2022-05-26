@@ -79,6 +79,32 @@
               </div>
             </div>
           </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="../../../assets/gameIcons/survey-icon.png" alt="encuesta" width="100%" height="225">
+              <div class="card-body">
+                <p class="card-text">Encuesta: Realiza esta breve encuesta para que podamos saber tu opinion del sitio!</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="navigateUrl('/survey')">Ir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col" *ngIf="this.userLogged.type === 'administrador'">
+            <div class="card shadow-sm">
+              <img src="../../../assets/gameIcons/survey-icon.png" alt="encuesta" width="100%" height="225">
+              <div class="card-body">
+                <p class="card-text">Listado de encuestas (Solo administradores)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="navigateUrl('/surveyList')">Ir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

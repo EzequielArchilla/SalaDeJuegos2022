@@ -5,7 +5,7 @@
         <canvas id="canvas" width=220 height=600></canvas>
 
         <div class="lateral-menu">
-            <span>Puntaje {{puntaje}}</span>
+            <span class="text-highlight">Puntaje {{puntaje}}</span>
             <button (click)="start()">INICIAR</button>
 
             <div class="keys">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-
+    <app-score-board juegoSeleccionado="desertRace"></app-score-board>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 </body>
